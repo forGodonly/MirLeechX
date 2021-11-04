@@ -49,7 +49,7 @@ load_dotenv('config.env')
 
 SERVER_PORT = os.environ.get('SERVER_PORT', None)
 PORT = os.environ.get('PORT', SERVER_PORT)
-web = subprocess.Popen([f"gunicorn wserver:start_server --bind 0.0.0.0:{PORT} --worker-class aiohttp.GunicornWebWorker"], shell=True)
+web = subprocess.Popen([f"rclone serve webdav /usr/src/app/downloads --addr 0.0.0.0:{PORT}"], shell=True)
 alive = subprocess.Popen(["python3", "alive.py"])
 subprocess.run(["mkdir", "-p", "qBittorrent/config"])
 subprocess.run(["cp", "qBittorrent.conf", "qBittorrent/config/qBittorrent.conf"])
